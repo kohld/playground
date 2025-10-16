@@ -30,7 +30,6 @@ jobs:
         with:
           path: ./.output/public
 
-  # Deployment job
   deploy:
     needs: build
     permissions:
