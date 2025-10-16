@@ -1,13 +1,16 @@
 {
+  "$schema": "https://json.schemastore.org/package.json",
   "name": "nitro-app",
   "private": true,
   "scripts": {
     "build": "nitro build",
     "dev": "nitro dev",
-    "preview": "node .output/server/index.mjs"
+    "preview": "node .output/server/index.mjs",
+    "format": "prettier --write ."
   },
   "devDependencies": {
     "h3": "^1.15.4",
-    "nitropack": "^2.12.4"
+    "nitropack": "^2.12.4",
+    "prettier": "^3.6.2"
   }
 }

@@ -33,6 +33,7 @@ npm run dev
 ```
 
 This will:
+
 - Start the Nitro development server with hot module replacement
 - Make your application available at **http://localhost:3000/**
 - Watch for file changes and automatically reload
@@ -78,6 +79,7 @@ This project is configured for automatic deployment to GitHub Pages via GitHub A
 ### GitHub Pages Preset
 
 The `github_pages` preset is crucial for this deployment:
+
 - Generates static HTML files in `.output/public`
 - Configures the base URL to work with GitHub Pages subdirectory structure
 - Optimizes assets for static hosting
