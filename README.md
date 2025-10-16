@@ -6,6 +6,10 @@ A minimal starter project built with [Nitro](https://nitro.build) - a powerful s
 
 - [About Nitro](#about-nitro)
 - [Local Development](#local-development)
+- [Code Quality & Development Tools](#code-quality--development-tools)
+  - [ESLint & TypeScript](#eslint--typescript)
+  - [Prettier](#prettier)
+  - [Pre-commit Hooks](#pre-commit-hooks)
 - [Build & Preview](#build--preview)
 - [GitHub Pages Deployment](#github-pages-deployment)
   - [How it Works](#how-it-works)
@@ -40,6 +44,84 @@ This will:
 - Provide detailed error messages and stack traces
 
 You can edit `server/routes/index.ts` to modify the homepage or add new routes by creating files in the `server/routes/` directory.
+
+### Available Scripts
+
+```bash
+npm run dev        # Start development server
+npm run build      # Build for production
+npm run preview    # Preview production build
+npm run lint       # Check for linting errors
+npm run lint:fix   # Fix linting errors automatically
+npm run format     # Format all files with Prettier
+```
+
+## Code Quality & Development Tools
+
+This project is configured with a robust development environment to ensure code quality and consistency.
+
+### ESLint & TypeScript
+
+**ESLint** is configured with TypeScript support and strict type-checking rules:
+
+```bash
+npm run lint       # Check for linting errors
+npm run lint:fix   # Automatically fix linting errors
+```
+
+**Configuration highlights** (`eslint.config.mjs`):
+
+- TypeScript ESLint with type-aware rules
+- Unused variables with `_` prefix are allowed (e.g., `_event`)
+- Enforces consistent type imports (`import type { ... }`)
+- Warns on `console.log()` usage (only `console.warn/error` allowed)
+- Prettier integration to avoid formatting conflicts
+
+**TypeScript Strict Mode** (`tsconfig.json`):
+
+The project uses TypeScript's strictest settings for maximum type safety:
+
+- ✅ `"strict": true` - Enables all strict type-checking options
+- ✅ `"noUncheckedIndexedAccess": true` - Array/object access returns `T | undefined`
+- ✅ `"noImplicitOverride": true` - Requires explicit `override` keyword
+- ✅ `"noImplicitReturns": true` - All code paths must return a value
+- ✅ `"noFallthroughCasesInSwitch": true` - Switch cases must have break/return
+- ✅ `"useUnknownInCatchVariables": true` - Catch variables are `unknown` instead of `any`
+- ✅ `"noUnusedLocals": true` - Warns about unused local variables
+
+These settings catch potential runtime errors at compile time.
+
+### Prettier
+
+**Prettier** handles all code formatting automatically:
+
+```bash
+npm run format     # Format all files
+```
+
+Configuration files:
+
+- `.prettierrc` - Formatting rules
+- `.prettierignore` - Files to exclude from formatting
+
+### Pre-commit Hooks
+
+**Husky** and **lint-staged** ensure code quality before every commit:
+
+- Automatically runs ESLint and Prettier on staged files
+- Only processes changed files for speed
+- Prevents commits with linting errors or formatting issues
+
+**What happens on `git commit`:**
+
+1. Husky intercepts the commit
+2. lint-staged runs on staged files:
+   - TypeScript/JavaScript files: ESLint fix + Prettier
+   - JSON/Markdown/YAML files: Prettier only
+3. If errors are found → commit is blocked
+4. If everything passes → commit proceeds
+
+This ensures all committed code meets quality standards.
 
 ## Build & Preview
 
