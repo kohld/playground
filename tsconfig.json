@@ -23,6 +23,8 @@
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
     "noUnusedLocals": true,
+    "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
     // "noUnusedParameters": true,
 
     // Libs & paths
